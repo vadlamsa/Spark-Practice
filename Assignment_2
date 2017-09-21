@@ -1,13 +1,17 @@
 # This is the general procedure. Before going to the code it is expected that a cluster has been created in AWS and is running.
-# Once the cluster is running, to access the AWS cluster from the terminal the following terminal commands are used:
-#The pem file is unique and has to be replaced with the user's pem file. The DNS is unique to the the cluster while it is running and will  #change if the cluster is terminated. A cluster cloned from the previous cluster might not have the same DNS. So 'hadoop@ec2-13-59-74-239.us-#east-2.compute.amazonaws.com' has to be replaced with the current DNS.
+# Once the cluster is running, to access the AWS cluster from the terminal the following terminal commands(Ubuntu terminal) are used:
+# The DNS is valid only as long as the cluster is running and will change if the cluster is terminated. A cluster cloned from the 
+# previous cluster might not have the same DNS. So 'hadoop@ec2-13-59-74-239.us-#east-2.compute.amazonaws.com' has to be replaced 
+# with the current DNS.
 
 soumya@soumya-Inspiron-7537:~$ chmod 400 /home/soumya/Downloads/FirstExample.pem
 soumya@soumya-Inspiron-7537:~$ scp -i /home/soumya/Downloads/FirstExample.pem /home/soumya/api.py  hadoop@ec2-13-59-74-239.us-east-2.compute.amazonaws.com:/home/hadoop/api.py
 soumya@soumya-Inspiron-7537:~$ ssh -i /home/soumya/Downloads/FirstExample.pem  hadoop@ec2-13-59-74-239.us-east-2.compute.amazonaws.com
 
 
-# It is a prerequisite that the data on which actions have to be performed (like a csv file) is stored in S3 bucket. To access the data from #the S3 bucket and to perform actions on it the following script is used. The results file are stored in the S3 bucket. To avoid getting #multiple files as results, 'repartition(1)' is used so that the results are obtained in a single output file.
+# It is a prerequisite that the data on which actions have to be performed (like a csv file) is stored in AWS S3 bucket. To access # the data from the S3 bucket and to perform actions on it the following script is used. The results file is stored in the S3 
+# bucket.To avoid getting multiple files as results, 'repartition(1)' is used while writing the results so that the results are 
+# obtained in a single output file.
 
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext

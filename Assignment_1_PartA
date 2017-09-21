@@ -1,0 +1,29 @@
+i)
+
+df = sqlContext.read.format("com.databricks.spark.csv").option("header", "true").load("whitehouse-waves-2014_03.csv")
+
+x=df.groupby('NAMELAST','NAMEFIRST','NAMEMID').count().show(5)
+
+new=x.selectExpr("count as COUNT","NAMELAST as LastName","NAMEFIRST as Firstname,"NAMEMID as Middlename")
+
+new.orderBy(new.COUNT.desc()).show(10)
+
+ii)
+
+x=df.groupby('visitee_namelast','visitee_namefirst').count()
+
+new=x.selectExpr("count as COUNT","visitee_namelast as VisiteeLastName","visitee_namefirst as visiteeFirstname)
+
+new.orderBy(new.COUNT.desc()).show(10)
+
+iii)
+
+x=df.groupby('NAMELAST','NAMEFIRST','NAMEMID','visitee_namelast','visitee_namefirst').count()
+
+new=x.selectExpr("count as COUNT","NAMELAST as LastName","NAMEFIRST as Firstname","NAMEMID as Middlename","visitee_namelast as visiteelastname","visitee_namefirst as visiteelastname")
+
+new.orderBy(new.COUNT.desc()).show(10)
+
+
+
+

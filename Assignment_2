@@ -1,3 +1,5 @@
+This is not the master branch.
+
 # This is the general procedure. Before going to the code it is expected that a cluster has been created in AWS and is running.
 # Once the cluster is running, to access the AWS cluster from the terminal the following terminal commands(Ubuntu terminal) are used:
 # The DNS is valid only as long as the cluster is running and will change if the cluster is terminated. A cluster cloned from the 
